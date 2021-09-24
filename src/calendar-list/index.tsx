@@ -346,7 +346,7 @@ class CalendarList extends Component<Props, State> {
   }
 
   render() {
-    const {style, pastScrollRange, futureScrollRange, horizontal, showScrollIndicator} = this.props;
+    const {style, pastScrollRange, futureScrollRange, horizontal, showScrollIndicator, scrollEventThrottle} = this.props;
 
     return (
       <View style={this.style.flatListContainer}>
@@ -357,6 +357,7 @@ class CalendarList extends Component<Props, State> {
           initialListSize={pastScrollRange + futureScrollRange + 1} // ListView deprecated
           data={this.state.rows}
           renderItem={this.renderItem}
+          scrollEventThrottle={scrollEventThrottle}
           getItemLayout={this.getItemLayout}
           onViewableItemsChanged={this.onViewableItemsChanged}
           viewabilityConfig={this.viewabilityConfig}
