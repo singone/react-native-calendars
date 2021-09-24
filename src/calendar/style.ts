@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import * as defaultStyle from '../style';
 import {Theme} from '../types';
 
+const STYLESHEET_ID = 'stylesheet.calendar.main';
 export default function getStyle(theme: Theme = {}) {
   const appStyle = {...defaultStyle, ...theme};
   return StyleSheet.create({
@@ -26,6 +27,6 @@ export default function getStyle(theme: Theme = {}) {
       flexDirection: 'row',
       justifyContent: 'space-around'
     },
-    ...(theme.stylesheet?.calendar?.main || {})
+    ...(theme.stylesheet?.calendar?.main ||theme[STYLESHEET_ID] || {})
   });
 }

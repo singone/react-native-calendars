@@ -2,6 +2,7 @@ import {Platform, StyleSheet} from 'react-native';
 import * as defaultStyle from '../style';
 import {Theme} from '../types';
 
+const STYLESHEET_ID = 'stylesheet.calendar-list.main';
 export default function getStyle(theme: Theme = {}) {
   const appStyle = {...defaultStyle, ...theme};
   return StyleSheet.create({
@@ -34,6 +35,6 @@ export default function getStyle(theme: Theme = {}) {
       paddingLeft: 15,
       paddingRight: 15
     },
-    ...(theme.stylesheet?.['calendar-list']?.main || {})
+    ...(theme.stylesheet?.['calendar-list']?.main || theme[STYLESHEET_ID] || {})
   });
 }

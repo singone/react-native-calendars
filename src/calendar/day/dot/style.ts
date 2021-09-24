@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import * as defaultStyle from '../../../style';
 import {Theme} from '../../../types';
 
+const STYLESHEET_ID = 'stylesheet.dot';
 export default function styleConstructor(theme: Theme = {}) {
   const appStyle = {...defaultStyle, ...theme};
   return StyleSheet.create({
@@ -30,6 +31,6 @@ export default function styleConstructor(theme: Theme = {}) {
     todayDot: {
       backgroundColor: appStyle.todayDotColor || appStyle.dotColor
     },
-    ...(theme.stylesheet?.dot || {})
+    ...(theme.stylesheet?.dot || theme[STYLESHEET_ID] || {})
   });
 }

@@ -4,6 +4,7 @@ import {Theme} from '../../../types';
 
 const FILLER_HEIGHT = 34;
 
+const STYLESHEET_ID = 'stylesheet.day.period';
 export default function styleConstructor(theme: Theme = {}) {
   const appStyle = {...defaultStyle, ...theme};
   return StyleSheet.create({
@@ -77,6 +78,6 @@ export default function styleConstructor(theme: Theme = {}) {
     // naText: {
     //   color: '#b6c1cd'
     // },
-    ...(theme.stylesheet?.day?.period || {})
+    ...(theme.stylesheet?.day?.period ||theme[STYLESHEET_ID] || {})
   });
 }

@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import * as defaultStyle from '../../style';
 import {Theme} from '../../../types';
 
+const STYLESHEET_ID = 'stylesheet.marking';
 export default function styleConstructor(theme: Theme = {}) {
   const appStyle = {...defaultStyle, ...theme};
   return StyleSheet.create({
@@ -26,6 +27,6 @@ export default function styleConstructor(theme: Theme = {}) {
       borderBottomRightRadius: 2,
       marginRight: 4
     },
-    ...(theme.stylesheet?.marking || {})
+    ...(theme.stylesheet?.marking  || theme[STYLESHEET_ID] || {})
   });
 }
