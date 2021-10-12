@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import XDate from 'xdate';
 
 import React, {Component} from 'react';
-import {FlatList, Platform, Dimensions, View, ViewStyle, LayoutChangeEvent, FlatListProps} from 'react-native';
+import {FlatList, Platform, Dimensions, View, ViewStyle, LayoutChangeEvent, FlatListProps, Animated} from 'react-native';
 
 // @ts-expect-error
 import {extractComponentProps} from '../component-updater';
@@ -346,16 +346,19 @@ class CalendarList extends Component<Props, State> {
   }
 
   render() {
-    const {style, pastScrollRange, futureScrollRange, horizontal, showScrollIndicator, scrollEventThrottle} = this.props;
+    const {style, pastScrollRange, futureScrollRange, inverted, horizontal, onScroll, showScrollIndicator, scrollEventThrottle} = this.props;
 
+    const ListCom = onScroll ? Animated.FlatList : FlatList;
     return (
       <View style={this.style.flatListContainer}>
-        <FlatList
+        <ListCom
+          onScroll={onScroll}
           ref={this.list}
           style={[this.style.container, style]}
           // @ts-ignore
           initialListSize={pastScrollRange + futureScrollRange + 1} // ListView deprecated
           data={this.state.rows}
+          inverted={inverted}
           renderItem={this.renderItem}
           scrollEventThrottle={scrollEventThrottle}
           getItemLayout={this.getItemLayout}
